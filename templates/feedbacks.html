@@ -1,0 +1,44 @@
+{% extends "admin_layout.html" %}
+
+{% block title %}
+Feedbacks
+{% endblock %}
+
+{% block body %}
+<header>
+  <h1>Manage Feedbacks</h1>
+</header>
+<div class="table-container">
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email Address</th>
+        <th>Feedback</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for feedback in feedbacks %}
+      <tr>
+        <td>{{ feedback.id }}</td>
+        <td>{{ feedback.name }}</td>
+        <td>{{ feedback.email_add }}</td>
+        <td>{{ feedback.feedback }}</td>
+        <td>
+          <div class="dropdown">
+            <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown">&equiv;</button>
+            <ul class="dropdown-menu">
+              <li>
+                <a class="dropdown-item" href="{{ url_for('delete_feedback', feedback_id=feedback.id) }}">Delete</a>
+              </li>
+            </ul>
+          </div>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

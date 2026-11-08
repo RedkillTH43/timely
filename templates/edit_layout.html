@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>
+    {% block title %}
+
+    {% endblock %}
+  </title>
+  <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      margin: 0;
+      padding: 0;
+    }
+    
+    #main {
+      transition: margin-left 0.5s;
+      padding: 20px;
+      background-color: #ECF0F1;
+    }
+
+    header {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    .table-container {
+      margin-top: 20px;
+      margin-bottom: 20px;
+      padding: 20px;
+      background: white;
+      border-radius: 5px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      color: black;
+    }
+
+    th,
+    td {
+      padding: 10px;
+      border: 1px solid #ddd;
+      text-align: left;
+    }
+
+    th {
+      background: #ecf0f1;
+    }
+
+    @media screen and (max-height: 450px) {
+      .sidebar {
+        padding-top: 15px;
+      }
+
+      .sidebar a {
+        font-size: 18px;
+      }
+    }
+
+    {% block style %}
+    {% endblock %}
+  </style>
+</head>
+
+<body>
+  <div id="main">
+    {% block body %}
+
+    {% endblock %}
+  </div>
+  <script src="../static/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

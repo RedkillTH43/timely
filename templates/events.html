@@ -1,0 +1,73 @@
+{% extends "admin_layout.html" %}
+
+{% block title %}
+Events
+{% endblock %}
+
+{% block style %}
+button {
+padding: 10px;
+border: 2px solid black;
+border-radius: 10px;
+}
+{% endblock %}
+
+{% block body %}
+<header>
+  <h2>Manage Event</h2>
+</header>
+<div class="table-container">
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Event Name</th>
+        <th>Venue</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Amount</th>
+        <th>Status</th>
+        <th>Approval</th>
+        <th>Operation</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for event in events %}
+      <tr>
+        <td>{{ event.id }}</td>
+        <td>{{ event.name }}</td>
+        <td>{{ event.venue }}</td>
+        <td>{{ event.start_date }}</td>
+        <td>{{ event.end_date }}</td>
+        <td>{{ event.amount|default("Free") }}</td>
+        <td>{{ event.status }}</td>
+        <td>{{ event.approval }}</td>
+        <td>
+          <div class="dropdown">
+            <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown">&equiv;</button>
+            <ul class="dropdown-menu">
+              {% if event.approval == "Accepted" or event.approval == "Declined" %}
+              <li>
+                <a class="dropdown-item" href="{{ url_for('edit_ev', event_id=event.id) }}">Edit</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="{{ url_for('delete_ev', event_id=event.id) }}">Delete</a>
+              </li>
+              {% else %}
+              <li>
+                <a class="dropdown-item" href="{{ url_for('accept', event_id=event.id) }}">Accept</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="{{ url_for('decline', event_id=event.id) }}">Decline</a>
+              </li>
+              {% endif %}
+            </ul>
+          </div>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+<a href="/create"><button class="btn btn-primary" type="button">Create Event</button></a>
+{% endblock %}

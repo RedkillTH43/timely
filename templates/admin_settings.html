@@ -1,0 +1,29 @@
+{% extends "admin_layout.html" %}
+
+{% block title %}
+Settings
+{% endblock %}
+
+{% block style %}
+button {
+margin: 10px;
+}
+
+#main {
+width: 100vw;
+height: 100vh;
+}
+{% endblock %}
+
+{% block body %}
+<div class="container-fluid">
+  <header>
+    <h1>Settings</h1>
+  </header>
+  <a href="/logout"><button type="button" class="btn btn-light">Log Out</button></a>
+  <br>
+  <a href="/delete_acc"><button type="button" class="btn btn-danger">Delete Account</button></a>
+  <br>
+  <a href="/reset_db"><button type="button" class="btn btn-danger">Reset Database</button></a>
+</div>
+{% endblock %}

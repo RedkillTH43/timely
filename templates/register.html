@@ -1,0 +1,82 @@
+{% extends "layout.html" %}
+
+{% block title %}
+
+{% endblock %}
+
+{% block style %}
+body {
+font-family: Arial, sans-serif;
+margin: 0;
+padding: 0;
+}
+.container {
+width: 90%;
+background-color: white;
+margin: 30px auto;
+padding: 20px;
+border-radius: 10px;
+}
+.image-container {
+text-align: center;
+margin: 20px 0;
+}
+.image-container img {
+width: 100%;
+max-width: 600px;
+border-radius: 10px;
+max-height: 480px;
+}
+.details {
+text-align: left;
+padding: 10px;
+}
+.details table {
+width: 100%;
+border-collapse: collapse;
+}
+.details table, .details th, .details td {
+border: 1px solid black;
+padding: 10px;
+}
+
+{% endblock %}
+
+{% block body %}
+<div class="container">
+  <div class="image-container">
+    <img src="{{ url_for('event_images', event_id=event.id) }}" alt="Event Image">
+  </div>
+  <div class="details">
+    <h3>Event Details</h3>
+    <table>
+      <tr>
+        <th>Name</th>
+        <td>{{ event.name }}</td>
+      </tr>
+      <tr>
+        <th>Date</th>
+        <td>{{ event.start_date }} — {{ event.end_date }}</td>
+      </tr>
+      <tr>
+        <th>Venue</th>
+        <td>{{ event.venue }}</td>
+      </tr>
+      <tr>
+        <th>Amount</th>
+        <td>{{ event.amount }}</td>
+      </tr>
+      <tr>
+        <th>Description</th>
+        <td>{{ event.description }}</td>
+      </tr>
+    </table>
+  </div>
+  <div align="center">
+    <form action="/join" method="post">
+      <input name="event_id" type="number" value="{{ event.id }}" hidden>
+      <button class="btn btn-danger w-25">Join</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

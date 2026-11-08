@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payment</title>
+  <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+  <style>
+    body {
+      font-family: Arial;
+      padding: 0px;
+      margin: 0;
+      background-color: #ff9999;
+    }
+
+    .payment_form {
+      background-color: white;
+      border: 0;
+      border-radius: 15px;
+      margin: 5vw;
+      padding: 10vw;
+    }
+
+    h1, input {
+      margin-bottom: 15px;
+    }
+
+    button {
+      margin-bottom: 10px;
+    }
+
+    h1 {
+      text-align: center;
+      font-weight: bold;
+    }
+
+    @media screen and (min-width: 640px) {
+      .payment_form {
+        margin: 10vw 20vw;
+        padding: 8vw;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="payment_form">
+    <h1>Payment</h1>
+    <form class="d-grid" action="{{ url_for('pay', event_id=event.id) }}" method="post" enctype="multipart/form-data">
+      <input class="form-control" name="acc_name" type="text" placeholder="Account Name" required>
+      <input class="form-control" name="acc_number" type="number" max="99999999999" oninput="if(this.value.length > 11) this.value = this.value.slice(0, 11);" placeholder="09XXXXXXXXX" required>
+      <input class="form-control" name="amount" type="number" placeholder="000" required>
+      <input class="form-control" name="image" type="file" accept="image/*" required>
+      <input class="form-control" name="ref_number" type="number" max="9999999999999" oninput="if(this.value.length > 13) this.value = this.value.slice(0, 13);" placeholder="Reference No." required>
+      <button class="btn btn-danger btn-block" id="submit_btn">Submit</button>
+      <a href="/"<button class="btn btn-light btn-block border" type="button">Cancel</button></a>
+  </form>
+</div>
+<script src="../static/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

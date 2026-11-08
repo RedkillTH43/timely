@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Home Page
+{% endblock %}
+
+{% block nav %}
+{% if not current_user %}
+<hr>
+<li class="nav-item">
+  <a class="nav-link" href="/login">Log In</a>
+</li>
+<li class="nav-item">
+  <a class="nav-link" href="/signup">Sign Up</a>
+</li>
+{% else %}
+<li class="nav-item">
+  <a class="nav-link" href="/my_events">My Events</a>
+</li>
+<hr>
+<li class="nav-item">
+  <a class="nav-link" href="/settings">Settings</a>
+</li>
+{% endif %}
+{% endblock %}
+
+{% block body %}
+<div id="main" class="bg-light">
+  <h1>Welcome {{ current_user.username|default("Home") }}!</h1>
+</div>
+{% endblock %}

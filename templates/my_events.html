@@ -1,0 +1,58 @@
+{% extends "layout.html" %}
+
+{% block title %}
+My Events
+{% endblock %}
+
+{% block nav %}
+<li class="nav-item">
+  <a class="nav-link" href="/my_events">My Events</a>
+</li>
+<hr>
+<li class="nav-item">
+  <a class="nav-link" href="/settings">Settings</a>
+</li>
+{% endblock %}
+
+{% block body %}
+<div id="main" class="bg-light">
+  <h2>My Events</h2>
+  <div class="table-container table-responsive-sm">
+    <table>
+      <tr>
+        <th>ID</th>
+        <th>Event Name</th>
+        <th>Venue</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Status</th>
+        <th>Payment Status</th>
+        <th>Operation</th>
+      </tr>
+      {% for event in current_user.events %}
+      <tr>
+        <td>{{ event.id }}</td>
+        <td>{{ event.name }}</td>
+        <td>{{ event.venue }}</td>
+        <td>{{ event.start_date }}</td>
+        <td>{{ event.end_date }}</td>
+        <td>{{ event.status }}</td>
+        {% if event.amount > 0 %}
+        {% for payment in event.payments %}
+        <td>{{ payment.status }}</td>
+        {% endfor %}
+        {% else %}
+        <td>Free</td>
+        {% endif %}
+        <td>
+          <form action="/cancel" method="post">
+            <input name="event_id" type="number" value="{{ event.id }}" hidden>
+            <button class="btn btn-primary">Cancel</button>
+          </form>
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+</div>
+{% endblock %}

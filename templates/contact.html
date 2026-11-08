@@ -1,0 +1,88 @@
+{% extends "layout.html"%}
+
+{% block title %}
+About
+{% endblock %}
+
+{% block style %}
+body {
+font-family: Arial;
+padding: 0px;
+margin: 0;
+background-color: #ff9999;
+}
+
+.contact_form {
+background-color: white;
+border: 0;
+border-radius: 15px;
+margin: 5vw;
+padding: 10vw;
+}
+
+h1, textarea{
+margin-bottom: 10px;
+}
+
+textarea {
+height: 20vh;
+}
+
+h1 {
+margin-bottom: 15px;
+}
+h1, label {
+font-weight: bold;
+}
+button, input {
+margin-bottom: 10px;
+}
+a {
+text-decoration: none;
+}
+@media screen and (min-width: 640px) {
+.contact_form {
+margin: 5vw 15vw;
+padding: 5vw;
+}
+
+textarea {
+height: 10vh;
+}
+}
+{% endblock %}
+
+{% block nav %}
+{% if not current_user %}
+<hr>
+<li class="nav-item">
+  <a class="nav-link" href="/login">Log In</a>
+</li>
+<li class="nav-item">
+  <a class="nav-link" href="/signup">Sign Up</a>
+</li>
+{% else %}
+<li class="nav-item">
+  <a class="nav-link" href="/my_events">My Events</a>
+</li>
+<hr>
+<li class="nav-item">
+  <a class="nav-link" href="/settings">Settings</a>
+</li>
+{% endif %}
+{% endblock %}
+
+{% block body %}
+<div class="bg-light contact_form">
+  <h1>Contact</h1>
+  <form class="d-grid" action="/contact" method="post">
+    <label class="form-label" for="name">Name (Optional):</label>
+    <input class="form-control" name="name" type="text" placeholder="Enter username">
+    <label class="form-label" for="email_add">Email Address:</label>
+    <input class="form-control" name="email_add" type="email" placeholder="Enter email address" required>
+    <label class="form-label" for="feedback">Feedback:</label>
+    <textarea class="form-control" name="feedback" placeholder="Enter feedback" required></textarea>
+    <button class="btn btn-danger btn-block">Submit</button>
+  </form>
+</div>
+{% endblock %}

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+  <title>Sign Up</title>
+  <style>
+    body {
+      font-family: Arial;
+      padding: 0px;
+      margin: 0;
+      background-color: #ff9999;
+    }
+
+    .signup_form {
+      background-color: white;
+      border: 0;
+      border-radius: 15px;
+      margin: 5vw;
+      padding: 10vw;
+    }
+
+    h1, p {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+    select {
+      margin-bottom: 10px;
+    }
+    h1 {
+      margin-bottom: 15px;
+    }
+    h1, label {
+      font-weight: bold;
+    }
+    button, input {
+      margin-bottom: 10px;
+    }
+    a {
+      text-decoration: none;
+    }
+    @media screen and (min-width: 640px) {
+      .signup_form {
+        margin: 10vw 20vw;
+        padding: 8vw;
+      }
+    }
+    </style>
+  </head>
+  <body>
+    <div class="signup_form">
+      <h1>Sign Up</h1>
+      <form class="d-grid" action="/signup" method="post">
+        <label class="form-label" for="username">Username:</label>
+        <input class="form-control" name="username" type="text" placeholder="Enter username">
+        <label class="form-label" for="password">Password:</label>
+        <input class="form-control" name="password" type="password" placeholder="Enter password">
+        <label class="form-label" for="confirm_pass">Confirm Password:</label>
+        <input class="form-control" name="confirm_pass" type="password" placeholder="Confirm password">
+        <label class="form-label" for="role">Select role:</label>
+        <select class="form-select" name="role">
+          <option selected disabled>Role</option>
+          <option value="student">Student</option>
+          <option value="alumni">Alumni</option>
+        </select>
+        <button class="btn btn-danger btn-block">SIGN UP</button>
+      </form>
+      <p>
+        Already have an account? <a href="/login">Log In</a>
+      </p>
+    </div>
+    <script src="../static/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

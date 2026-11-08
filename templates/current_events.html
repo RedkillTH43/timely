@@ -1,0 +1,90 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Events
+{% endblock %}
+
+{% block style %}
+
+.event-container {
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 20px;
+}
+
+.event {
+display: flex;
+flex-direction: column;
+align-items: center;
+}
+
+.event img {
+width: 70%;
+height: auto;
+border-radius: 10px;
+}
+
+.event button {
+background-color: #ffffff;
+border: none;
+padding: 12px 20px;
+margin-top: 10px;
+color: rgba(221, 123, 123, 0.925);
+border-radius: 5px;
+cursor: pointer;
+font-size: 16px;
+}
+
+.event button a {
+text-decoration: none;
+color: black;
+font-weight: bold;
+}
+
+.event button:hover {
+background-color: #770000da;
+}
+
+@media screen and (max-width: 768px) {
+.event img {
+width: 90%;
+}
+}
+{% endblock %}
+
+{% block nav %}
+{% if not current_user %}
+<hr>
+<li class="nav-item">
+  <a class="nav-link" href="/login">Log In</a>
+</li>
+<li class="nav-item">
+  <a class="nav-link" href="/signup">Sign Up</a>
+</li>
+{% else %}
+<li class="nav-item">
+  <a class="nav-link" href="/my_events">My Events</a>
+</li>
+<hr>
+<li class="nav-item">
+  <a class="nav-link" href="/settings">Settings</a>
+</li>
+{% endif %}
+{% endblock %}
+
+{% block body %}
+<div id="main" class="bg-light">
+  <h2>Current Events</h2>
+  <div class="event-container">
+    {% for event in events %}
+    <div class="event">
+      <img src="{{ url_for('event_images', event_id=event.id) }}" alt="{{ event.name }}">
+      <button>
+        <a href="{{ url_for('register', event_id=event.id) }}">{{ event.name }}</a>
+      </button>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

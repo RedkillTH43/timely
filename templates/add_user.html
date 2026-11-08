@@ -1,0 +1,80 @@
+{% extends "edit_layout.html" %}
+
+{% block title %}
+Edit Event
+{% endblock %}
+
+{% block style %}
+h1 {
+color: #333;
+}
+
+form {
+background: #F8F9FA;
+padding: 20px;
+border-radius: 5px;
+width: 100vw;
+}
+
+.form-group {
+margin-bottom: 15px;
+}
+
+label {
+display: block;
+font-weight: bold;
+}
+
+input, select {
+width: 100%;
+padding: 10px;
+margin-top: 5px;
+border: 1px solid #ccc;
+border-radius: 5px;
+}
+
+button {
+background: #3498DB;
+color: white;
+padding: 10px 15px;
+border: none;
+border-radius: 5px;
+cursor: pointer;
+text-decoration: none;
+}
+
+button:hover {
+background: #2980B9;
+}
+
+{% endblock %}
+
+{% block body %}
+<header>
+  <h1>Add User</h1>
+</header>
+<div class="container-fluid">
+  <form action="/add_user" method="post">
+    <div class="form-group">
+      <label>Name*</label>
+      <input name="username" type="text" placeholder="Enter name" required>
+    </div>
+    <div class="form-group">
+      <label>Password*</label>
+      <input name="password" type="password" placeholder="Enter password" required>
+    </div>
+    <div class="form-group">
+      <label>Role*</label>
+      <select name="role" class="form-group" required>
+        <option disabled selected>Role</option>
+        <option value="admin">Administrator</option>
+        <option value="club_rep">Club Representative</option>
+        <option value="student">Student</option>
+        <option value="alumni">Alumni</option>
+      </select>
+    </div>
+    <button type="submit">Add</button>
+    <a href="/users"><button type="button">Cancel</button></a>
+  </form>
+</div>
+{% endblock %}

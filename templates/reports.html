@@ -1,0 +1,106 @@
+{% extends "admin_layout.html" %}
+
+{% block title %}
+Reports
+{% endblock %}
+
+{% block style %}
+.table-container {
+margin-bottom: 20px;
+}
+{% endblock %}
+
+{% block body %}
+<header>
+  <h1>Reports</h1>
+</header>
+<div class="table-container clearfix m-10 d-flex justify-content-center">
+  <div class="card float-start border-0 mx-2 col-sm-3 bg-success rounded-4">
+    <div class="card-body">
+      <h1 class="card-title text-center text-white">{{ report["total_event"] }}</h1>
+      <p class="card-text text-center text-white">
+        Total Events
+      </p>
+    </div>
+  </div>
+  <div class="card float-start border-0 mx-2 col-sm-4 bg-danger w-24 rounded-4">
+    <div class="card-body">
+      <h1 class="card-title text-center text-white">{{ report["total_registered"] }}</h1>
+      <p class="card-text text-center text-white">
+        Total Registered
+      </p>
+    </div>
+  </div>
+  <div class="card float-start border-0 mx-2 col-sm-3 bg-warning rounded-4">
+    <div class="card-body">
+      <h1 class="card-title text-center text-white">{{ report["total_amount"] }}</h1>
+      <p class="card-text text-center text-white">
+        Total Amount
+      </p>
+    </div>
+  </div>
+</div>
+<br>
+<div class="table-container">
+  <table cellpadding="5" cellspacing="0" width="145%">
+    <tr>
+      <th>Report Period:</th>
+      <td>January 1, 2025 - February 5, 2025</td>
+    </tr>
+  </table>
+</div>
+
+<h3>Registered Summary:</h3>
+<div class="table-container">
+  <table cellpadding="5" cellspacing="0" width="145%">
+    <tr>
+      <th>Role</th>
+      <th>No. of Registered</th>
+      <th>Total Payment</th>
+    </tr>
+    <tr>
+      <td>Student</td>
+      <td>{{ report["student"][0] }}</td>
+      <td>{{ report["student"][1] }}</td>
+    </tr>
+    <tr>
+      <td>Alumni</td>
+      <td>{{ report["alumni"][0] }}</td>
+      <td>{{ report["alumni"][1] }}</td>
+    </tr>
+    <tr>
+      <td>Total</td>
+      <td>{{ report["student"][0] + report["alumni"][0] }}</td>
+      <td>{{ report["student"][1] + report["alumni"][1] }}</td>
+    </tr>
+  </table>
+</div>
+
+<h3>Top 5 Events:</h3>
+<div class="table-container">
+  <table cellpadding="5" cellspacing="0" width="145%">
+    <tr>
+      <th>No.</th>
+      <th>Event Name</th>
+      <th>Venue</th>
+      <th>Start Date</th>
+      <th>End Date</th>
+      <th>Amount</th>
+      <th>Total Registered</th>
+      <th>Status</th>
+    </tr>
+    {% for event in report["top5_ev"] %}
+    <tr>
+      <td>{{ event.id }}</td>
+      <td>{{ event.name }}</td>
+      <td>{{ event.venue }}</td>
+      <td>{{ event.start_date }}</td>
+      <td>{{ event.end_date }}</td>
+      <td>{{ event.amount }}</td>
+      <td>{{ event.total_registered }}</td>
+      <td>{{ event.status }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+</div>
+{% endblock %}

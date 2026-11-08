@@ -1,0 +1,74 @@
+{% extends "club_rep_layout.html" %}
+
+{% block title %}
+Club Rep Dashboard
+{% endblock %}
+
+{% block body %}
+<div class="header">
+  <h2>Dashboard</h2>
+</div>
+<div class="table-container clearfix m-10 d-flex justify-content-center">
+  <div class="card float-start border-0 mx-2 col-sm-2 bg-success rounded-4">
+    <div class="card-body">
+      <h1 class="card-title text-center text-white">{{ total_accepted }}</h1>
+      <p class="card-text text-center text-white">
+        Total Accepted
+      </p>
+    </div>
+  </div>
+  <div class="card float-start border-0 mx-2 col-sm-3 bg-warning rounded-4">
+    <div class="card-body">
+      <h1 class="card-title text-center text-white">{{ total_pending }}</h1>
+      <p class="card-text text-center text-white">
+        Total Pending
+      </p>
+    </div>
+  </div>
+  <div class="card float-start border-0 mx-2 col-sm-2 bg-danger rounded-4">
+    <div class="card-body">
+      <h1 class="card-title text-center text-white">{{ total_declined }}</h1>
+      <p class="card-text text-center text-white">
+        Total Declined
+      </p>
+    </div>
+  </div>
+  <div class="card float-start border-0 mx-2 col-sm-3 bg-primary w-24 rounded-4">
+    <div class="card-body">
+      <h1 class="card-title text-center text-white">{{ total_proposal }}</h1>
+      <p class="card-text text-center text-white">
+        Total Proposals
+      </p>
+    </div>
+  </div>
+</div>
+<h2>Current Proposals</h2>
+<div class="table-container">
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Event Name</th>
+        <th>Venue</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Status</th>
+        <th>Approval</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for event in events %}
+      <tr>
+        <td>{{ event.id }}</td>
+        <td>{{ event.name }}</td>
+        <td>{{ event.venue }}</td>
+        <td>{{ event.start_date }}</td>
+        <td>{{ event.end_date }}</td>
+        <td>{{ event.status }}</td>
+        <td>{{ event.approval }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

@@ -1,0 +1,60 @@
+{% extends "admin_layout.html" %}
+
+{% block title %}
+Payments
+{% endblock %}
+
+{% block body %}
+<header>
+  <h1>Manage Payments</h1>
+</header>
+<div class="table-container">
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Image</th>
+        <th>Reference No.</th>
+        <th>Account Name</th>
+        <th>Account Number</th>
+        <th>Date & Time</th>
+        <th>Event</th>
+        <th>Amount</th>
+        <th>Status</th>
+        <th>Operation</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for payment in payments %}
+      <tr>
+        <td>{{ payment.id }}</td>
+        <td><img src="{{ url_for('ref_images', filename=payment.image.file_path) }}" style="width:10vw; height:7vh;"></td>
+        <td>{{ payment.ref_number }}</td>
+        <td>{{ payment.acc_name }}</td>
+        <td>{{ payment.acc_number}}</td>
+        <td>{{ payment.date }}</td>
+        <td>{{ payment.name }}</td>
+        <td>{{ payment.amount }}</td>
+        <td>{{ payment.status }}</td>
+        <td>
+          <div class="dropdown">
+            <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown">&equiv;</button>
+            <ul class="dropdown-menu">
+              <li>
+                <a class="dropdown-item" href="{{ url_for('accept_pay', pay_id=payment.id) }}">Accept</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="{{ url_for('decline_pay', pay_id=payment.id) }}">Decline</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="{{ url_for('delete_pay', pay_id=payment.id) }}">Delete</a>
+              </li>
+            </ul>
+          </div>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

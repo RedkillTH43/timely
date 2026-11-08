@@ -1,0 +1,79 @@
+{% extends "club_rep_layout.html" %}
+
+{% block title %}
+Propose Event
+{% endblock %}
+
+{% block style %}
+body {
+font-family: Arial, sans-serif;
+margin: 20px;
+padding: 0;
+background-color: #f4f4f4;
+}
+.container {
+max-width: 600px;
+margin: auto;
+background: white;
+padding: 20px;
+box-shadow: 0 0 10px rgba(0,0,0,0.1);
+border-radius: 8px;
+}
+h2 {
+text-align: center;
+}
+label {
+font-weight: bold;
+display: block;
+margin: 10px 0 5px;
+}
+input, textarea {
+width: 100%;
+padding: 8px;
+margin-bottom: 10px;
+border: 1px solid #ccc;
+border-radius: 4px;
+}
+button {
+width: 100%;
+padding: 10px;
+background: #28a745;
+color: white;
+border: none;
+cursor: pointer;
+font-size: 16px;
+margin-top: 10px;
+}
+button:hover {
+background: #218838;
+}
+{% endblock %}
+
+{% block body %}
+<div class="container">
+  <h2>Event Proposal Form</h2>
+  <form action="/propose" method="post" id="eventForm" enctype="multipart/form-data">
+    <label for="image">Upload Event Image:</label>
+    <input class="form-control" name="image" type="file" accept="image/*" required>
+    <label for="eventName">Event Name:</label>
+    <input name="ev_name" type="text" id="eventName" required>
+
+    <label for="eventStartDate">Start Date:</label>
+    <input name="start_date" type="date" id="eventStartDate" required>
+
+    <label for="eventEndDate">End Date:</label>
+    <input name="end_date" type="date" id="eventEndDate" required>
+
+    <label for="eventLocation">Location:</label>
+    <input name="ev_venue" type="text" id="eventLocation" required>
+
+    <label for="eventAmount">Amount:</label>
+    <input name="amount" type="number" id="eventAmount" placeholder="XXX">
+
+    <label for="eventDescription">Description:</label>
+    <textarea name="description" id="eventDescription" rows="4" required></textarea>
+
+    <button type="submit">Submit Proposal</button>
+  </form>
+</div>
+{% endblock %}
